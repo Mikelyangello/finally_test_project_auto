@@ -11,4 +11,8 @@ class LoginPageLocators:
 
 
 class ProductPageLocators:
+    PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
     ADD_TO_BASKET = (By.CSS_SELECTOR, "#add_to_basket_form>button")
+    NOTIFICATION_PRODUCT_ADD_TO_BASKET = (By.XPATH, '//div[@class="alertinner "]/strong')
+    NOTIFICATION_BASKET_PRICE = (By.XPATH, "//div[@class='alertinner ']/p/strong")
