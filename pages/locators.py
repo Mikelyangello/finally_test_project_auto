@@ -16,4 +16,3 @@ class ProductPageLocators:
     ADD_TO_BASKET = (By.CSS_SELECTOR, "#add_to_basket_form>button")
     NOTIFICATION_PRODUCT_ADD_TO_BASKET = (By.XPATH, '//div[@class="alertinner "]/strong')
     NOTIFICATION_BASKET_PRICE = (By.XPATH, "//div[@class='alertinner ']/p/strong")
-    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "SUCCESS_MESSAGE")

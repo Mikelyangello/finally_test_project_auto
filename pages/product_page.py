@@ -39,11 +39,11 @@ class ProductPage(BasePage):
                 from card: {product_price_from_card} != {product_price_from_notification} - from notification"
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        assert self.is_not_element_present(*ProductPageLocators.NOTIFICATION_PRODUCT_ADD_TO_BASKET), \
             "Success message is presented, but should not be"
 
     def should_be_disappeared(self):
-        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+        assert self.is_disappeared(*ProductPageLocators.NOTIFICATION_PRODUCT_ADD_TO_BASKET), \
             "Success message still is presented, but should not be"
 
 

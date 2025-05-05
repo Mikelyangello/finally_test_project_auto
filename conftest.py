@@ -4,7 +4,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 try:
-    from globals import MyCreds
+    from .globals import MyCreds
 except ModuleNotFoundError:
     print("You need to create a file\nglobals.py\nwith private credentials")
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,6 +17,8 @@ def pytest_addoption(parser):
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="en",
                      help="Enter your prefer language")
+    parser.addoption('--delay', action='store', default="10",
+                     help="Enter a timeout at the end of every test")
 
 
 @pytest.fixture(scope="function")
@@ -24,6 +26,7 @@ def browser(request):
     print("\nstart browser for test..")
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
+    delay = int(request.config.getoption("delay"))
     browser = None
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
@@ -37,7 +40,6 @@ def browser(request):
         options.binary_location = r'C:\Program Files\Mozilla Firefox'
         browser = webdriver.Firefox()
     yield browser
-    delay = 10
     print(f"\nquit browser.. with delay --- {delay}sec.")
     time.sleep(delay)
     try:
