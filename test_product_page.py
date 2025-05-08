@@ -1,7 +1,31 @@
 from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
 from .pages.main_page import MainPage
 from .pages.basket_page import BasketPage
 import pytest
+
+
+@pytest.mark.add_to_basket_user
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser, mc):
+        self.registration_page = LoginPage(browser, mc.def_link, mc=mc)
+        self.registration_page.open()
+        self.registration_page.go_to_login_page()
+        self.registration_page.register_new_user()
+        self.registration_page.should_be_authorized_user()
+
+    def test_user_can_add_product_to_basket(self, browser, mc):
+        page = ProductPage(browser, mc.def_link)
+        page.open()
+        page.add_product_to_basket()
+        page.should_be_add_item_to_basket_notification()
+        page.should_be_correct_price_of_product()
+
+    def test_user_cant_see_success_message(self, browser, mc):
+        page = ProductPage(browser, mc.def_link)
+        page.open()
+        page.should_not_be_success_message()
 
 
 def link_compilator(excluded_link=None, number_of_links=10):
