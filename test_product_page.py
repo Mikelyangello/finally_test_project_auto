@@ -15,6 +15,7 @@ class TestUserAddToBasketFromProductPage:
         self.registration_page.register_new_user()
         self.registration_page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser, mc):
         page = ProductPage(browser, mc.def_link)
         page.open()
@@ -28,13 +29,15 @@ class TestUserAddToBasketFromProductPage:
         page.should_not_be_success_message()
 
 
-def link_compilator(excluded_link=None, number_of_links=10):
+# генератор ссылок для тестов - можно передать номер ссылки, которая с ошибкой сейчас, для пометки в тестах
+def link_compiler(excluded_link=None, number_of_links=10):
     base = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer"
     return [base + str(i) if i != excluded_link else pytest.param(base + str(i), marks=pytest.mark.xfail)
             for i in range(number_of_links)]
 
 
-@pytest.mark.parametrize('link', link_compilator(7))
+@pytest.mark.need_review
+@pytest.mark.parametrize('link', link_compiler(7))
 def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)
     page.open()
@@ -73,6 +76,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -81,6 +85,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.should_be_login_url()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser, mc):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link, mc=mc)

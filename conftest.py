@@ -6,7 +6,8 @@ from selenium.webdriver.common.by import By
 try:
     from .globals import MyCreds
 except ModuleNotFoundError:
-    print("You need to create a file\nglobals.py\nwith private credentials")
+    from .globals_git import MyCreds
+    print("You need to create a file\nglobals.py\nwith YOUR private credentials")
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver import FirefoxProfile
@@ -17,7 +18,7 @@ def pytest_addoption(parser):
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default="en",
                      help="Enter your prefer language")
-    parser.addoption('--delay', action='store', default="10",
+    parser.addoption('--delay', action='store', default="1",
                      help="Enter a timeout at the end of every test")
 
 

@@ -21,8 +21,10 @@ class LoginPage(BasePage):
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
-        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), f"Can't find locator '{LoginPageLocators.LOGIN_FORM[1]}'"
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), \
+            f"Can't find locator '{LoginPageLocators.LOGIN_FORM[1]}'"
 
     def should_be_register_form(self):
         # реализуйте проверку, что есть форма регистрации на странице
-        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), f"Can't find locator '{LoginPageLocators.REGISTER_FORM[1]}'"
+        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), \
+            f"Can't find locator '{LoginPageLocators.REGISTER_FORM[1]}'"
