@@ -1,7 +1,7 @@
 ![Logo of the project](https://stepik.org/static/frontend/topbar_logo.svg)
 
 # Автоматизация тестирования с помощью Selenium и Python
-> Stepik cources automation
+> Stepik courses automation
 
 A test project for the code review
 
